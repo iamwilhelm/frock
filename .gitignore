@@ -1,0 +1,14 @@
+# ignore emacs and other backup files
+*~
+\#*\#
+.\#*
+
+# various rails files should be ignored
+.autotest
+log/*
+tmp/*
+doc/app/*
+coverage/*
+.DS_Store
+**/.DS_Store
+.dotest/*
