@@ -1,7 +1,7 @@
 --  A custom vector class
 
 Vector = {
-   identity = "This is a vector class",
+   identity = "Vector class",
 }
 
 function Vector:new(x, y)
@@ -14,11 +14,11 @@ function Vector:new(x, y)
    return instance
 end
 
-function Vector:to_s()
+function Vector:toString()
    return "(" .. self.x .. ", " .. self.y .. ")"
 end
 
-function Vector:is_nearby(threshold, a)
+function Vector:isNearby(threshold, a)
    if a == self then
       return false 
    end
