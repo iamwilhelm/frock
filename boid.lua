@@ -9,6 +9,7 @@ Boid.MAX_SPEED = 20
 Boid.AVOID_RADIUS = Boid.radius * 3
 Boid.AVOID_DAMPER = 50
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
+Boid.ATTRACTION_DAMPER = 30
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
 Boid.ALIGNMENT_DAMPER = 50
 Boid.HUNTING_RADIUS = Boid.radius * 5
@@ -36,6 +37,19 @@ function Boid:calculate_avoidance_delta(boids)
    end
 end
 
+function Boid:calculate_attraction_delta(boids)
+   local average_position = Vector:new(0, 0)
+   local visible_boids = 0
+   for _, other in ipairs(boids) do
+      if self.position:isNearby(Boid.ATTRACTION_RADIUS, other.position) then
+         average_position = average_position + other.position
+         visible_boids = visible_boids + 1
+      end
+   end
+   average_position = average_position / visible_boids
+   self.velocity_delta = self.velocity_delta + (average_position - self.position) / Boid.ATTRACTION_DAMPER
+end
+
 function Boid:calculate_stay_visible_delta(boids)
    local mid_x = love.graphics.getWidth() / 2
    local mid_y = love.graphics.getHeight() / 2
@@ -57,6 +71,7 @@ end
 
 function Boid:navigate(boids)
    self:calculate_avoidance_delta(boids)
+   self:calculate_attraction_delta(boids)
    self:calculate_stay_visible_delta(boids)
 end
 
