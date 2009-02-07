@@ -27,7 +27,7 @@ function Food:spawn(x, y)
 end
 
 function Food:isEaten(boid)
-   if self.position.isNearby(Food.radius, boid.position) then
+   if self.position:isNearby(Food.radius, boid.position) then
       self.size = self.size - 1
    end
    if self.size <= 0 then
