@@ -34,5 +34,8 @@ function draw()
    end
 end
 
-function mousepressed()
+function mousepressed(x, y, button)
+   if button == love.mouse_left then
+      table.insert(foodstuffs, Food:new(x, y))
+   end
 end
