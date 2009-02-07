@@ -5,16 +5,15 @@ Boid = {
    radius = 20
 }
 
--- Boid.MAX_SPEED = 20
--- Boid.AVOID_RADIUS = Boid.radius * 3
--- Boid.AVOID_DAMPER = 50
--- Boid.ATTRACTION_RADIUS = Boid.radius * 8
---    alignmentRadius = self.radius * 3,
---    alignmentDamper = 50,
---    huntingRadius = self.radius * 5,
---    huntingDamper = 10,
---    stayVisibleDamper = 400
-
+Boid.MAX_SPEED = 20
+Boid.AVOID_RADIUS = Boid.radius * 3
+Boid.AVOID_DAMPER = 50
+Boid.ATTRACTION_RADIUS = Boid.radius * 8
+Boid.ALIGNMENT_RADIUS = Boid.radius * 3
+Boid.ALIGNMENT_DAMPER = 50
+Boid.HUNTING_RADIUS = Boid.radius * 5
+Boid.HUNTING_DAMPER = 10
+Boid.STAY_VISIBLE_DAMPER = 400
 
 function Boid:new(x, y, vx, vy)
    local instance = {}
