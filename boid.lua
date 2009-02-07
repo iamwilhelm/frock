@@ -28,6 +28,14 @@ function Boid:new(x, y, vx, vy)
    return instance
 end
 
+function Boid:calculate_avoidance_delta(boids)
+   for _, other in ipairs(boids) do
+      if self.position:isNearby(Boid.AVOID_RADIUS, other.position) then
+         self.velocity_delta = self.velocity_delta + (self.position - other.position) / Boid.AVOID_DAMPER
+      end
+   end
+end
+
 function Boid:calculate_stay_visible_delta(boids)
    local mid_x = love.graphics.getWidth() / 2
    local mid_y = love.graphics.getHeight() / 2
@@ -48,6 +56,7 @@ function Boid:limit_speed()
 end
 
 function Boid:navigate(boids)
+   self:calculate_avoidance_delta(boids)
    self:calculate_stay_visible_delta(boids)
 end
 
