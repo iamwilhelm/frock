@@ -28,6 +28,14 @@ function Boid:new(x, y, vx, vy)
    return instance
 end
 
+function Boid:calculate_stay_visible_delta(boids)
+   local mid_x = love.graphics.getWidth() / 2
+   local mid_y = love.graphics.getHeight() / 2
+   local center_vector = Vector:new(mid_x, mid_y)
+   
+   self.velocity_delta = self.velocity_delta - (self.position - center_vector) / Boid.STAY_VISIBLE_DAMPER
+end
+
 function Boid:apply_deltas()
    self.velocity = self.velocity + self.velocity_delta
    self.velocity_delta = Vector:new(0, 0)
@@ -40,7 +48,7 @@ function Boid:limit_speed()
 end
 
 function Boid:navigate(boids)
-
+   self:calculate_stay_visible_delta(boids)
 end
 
 function Boid:move()

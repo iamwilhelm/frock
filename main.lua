@@ -9,7 +9,7 @@ require 'boid'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 20
+   num_boids = 50
    num_foodstuff = 5
    boids = {}
    foodstuffs = {}
@@ -40,14 +40,14 @@ function update(dt)
 end
 
 function draw()
-   -- draw each boid
-   for _, boid in ipairs(boids) do
-      boid:draw()
-   end
-
    -- draw each food
    for _, food in ipairs(foodstuffs) do
       food:draw()
+   end
+
+   -- draw each boid
+   for _, boid in ipairs(boids) do
+      boid:draw()
    end
 
    love.graphics.draw(table.getn(boids), 10, 20)
