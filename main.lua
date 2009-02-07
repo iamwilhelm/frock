@@ -31,6 +31,11 @@ end
 
 function update(dt)
    -- updates vectors for each boid
+   for _, boid in ipairs(boids) do
+      boid:navigate(boids)
+      boid:move()
+   end
+
    -- see if each food is isEaten
 end
 

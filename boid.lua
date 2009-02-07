@@ -28,6 +28,27 @@ function Boid:new(x, y, vx, vy)
    return instance
 end
 
+function Boid:apply_deltas()
+   self.velocity = self.velocity + self.velocity_delta
+   self.velocity_delta = Vector:new(0, 0)
+end
+
+function Boid:limit_speed()
+   if self.velocity:r() > Boid.MAX_SPEED then
+      self.velocity = self.velocity / self.velocity:r()
+   end
+end
+
+function Boid:navigate(boids)
+
+end
+
+function Boid:move()
+   self:apply_deltas()
+   self:limit_speed()
+   self.position = self.position + self.velocity
+end
+
 function Boid:draw()
    love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
