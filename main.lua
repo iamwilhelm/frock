@@ -5,6 +5,7 @@
 -- Boid Algo    : http://www.vergenet.net/~conrad/boids/pseudocode.html 
 
 require 'food'
+require 'boid'
 
 function load()
    math.randomseed(os.time())
@@ -13,7 +14,14 @@ function load()
    boids = {}
    foodstuffs = {}
 
+   font = love.graphics.newFont(love.default_font, 14)
+   love.graphics.setFont(font)
+
    for i = 1, num_boids do
+      boids[i] = Boid:new(math.random() * love.graphics.getWidth(),
+                          math.random() * love.graphics.getHeight(),
+                          math.random(30) - 15,
+                          math.random(30) - 15)
    end
 
    for i = 1, num_foodstuff do
@@ -28,10 +36,16 @@ end
 
 function draw()
    -- draw each boid
+   for _, boid in ipairs(boids) do
+      boid:draw()
+   end
+
    -- draw each food
    for _, food in ipairs(foodstuffs) do
       food:draw()
    end
+
+   love.graphics.draw(table.getn(boids), 10, 20)
 end
 
 function mousepressed(x, y, button)
