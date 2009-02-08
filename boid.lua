@@ -86,7 +86,7 @@ end
 
 function Boid:limit_speed()
    if self.velocity:r() > Boid.MAX_SPEED then
-      self.velocity = self.velocity / self.velocity:r()
+      self.velocity = self.velocity / self.velocity:r() * Boid.MAX_SPEED
    end
 end
 
