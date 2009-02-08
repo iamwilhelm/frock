@@ -61,6 +61,10 @@ function Vector:r()
    return math.sqrt(self:dot(self))
 end
 
+function Vector:norm()
+   return Vector:new(self.x, self.y) / self:r()
+end
+
 
 -- a = Vector:new(2,2)
 -- b = Vector:new(5,6)

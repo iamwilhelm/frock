@@ -5,12 +5,12 @@ Boid = {
    radius = 20
 }
 
-Boid.MAX_SPEED = 15
-Boid.MIN_SPEED = 5
+Boid.MAX_SPEED = 10
+Boid.MIN_SPEED = 1
 Boid.AVOID_RADIUS = Boid.radius * 3
-Boid.AVOID_DAMPER = 200
+Boid.AVOID_SPEED = 50
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
-Boid.ATTRACTION_DAMPER = 70
+Boid.ATTRACTION_DAMPER = 50
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
 Boid.ALIGNMENT_DAMPER = 50
 Boid.HUNTING_RADIUS = Boid.radius * 10
@@ -33,7 +33,11 @@ end
 function Boid:calculate_avoidance_delta(boids)
    for _, other in ipairs(boids) do
       if self.position:isNearby(Boid.AVOID_RADIUS, other.position) then
-         self.velocity_delta = self.velocity_delta + ((self.position - other.position) / Boid.AVOID_DAMPER)
+         local avoid_vector = (self.position - other.position)
+         local unit_avoid_accel = avoid_vector:norm()
+         local avoid_multiplier = Boid.AVOID_RADIUS / avoid_vector:r()
+         local avoid_accel = unit_avoid_accel * avoid_multiplier
+         self.velocity_delta = self.velocity_delta + avoid_accel
       end
    end
 end
@@ -88,6 +92,9 @@ end
 function Boid:limit_speed()
    if self.velocity:r() > Boid.MAX_SPEED then
       self.velocity = self.velocity / self.velocity:r() * Boid.MAX_SPEED
+   end
+   if self.velocity:r() < Boid.MIN_SPEED then
+      self.velocity = self.velocity / self.velocity:r() * Boid.MIN_SPEED
    end
 end
 
