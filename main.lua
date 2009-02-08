@@ -9,8 +9,8 @@ require 'boid'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 50
-   num_foodstuff = 25
+   num_boids = 30
+   num_foodstuff = 10
    boids = {}
    foodstuffs = {}
 
@@ -32,7 +32,7 @@ end
 function update(dt)
    -- updates vectors for each boid
    for _, boid in ipairs(boids) do
-      boid:navigate(boids)
+      boid:navigate(boids, foodstuffs)
       boid:move()
 
       -- see if each food is isEaten
