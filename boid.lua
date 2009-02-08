@@ -50,6 +50,19 @@ function Boid:calculate_attraction_delta(boids)
    self.velocity_delta = self.velocity_delta + (average_position - self.position) / Boid.ATTRACTION_DAMPER
 end
 
+function Boid:calculate_alignment_delta(boids)
+   alignment_delta = Vector:new(0, 0)
+   visible_boids = 0
+   for _, other in ipairs(boids) do
+      if self.position:isNearby(Boid.ALIGNMENT_RADIUS, other.position) then
+         alignment_delta = alignment_delta + other.velocity
+         visible_boids = visible_boids + 1
+      end
+   end
+   alignment_delta = alignment_delta / visible_boids
+   self.velocity_delta = self.velocity_delta + (alignment_delta / Boid.ALIGNMENT_DAMPER)
+end
+
 function Boid:calculate_hunting_delta(foodstuffs)
    for _, food in ipairs(foodstuffs) do
       if self.position:isNearby(Boid.HUNTING_RADIUS, food.position) then
@@ -80,6 +93,7 @@ end
 function Boid:navigate(boids, foodstuffs)
    self:calculate_avoidance_delta(boids)
    self:calculate_attraction_delta(boids)
+   self:calculate_alignment_delta(boids)
    self:calculate_hunting_delta(foodstuffs)
    self:calculate_stay_visible_delta(boids)
 end
