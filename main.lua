@@ -9,8 +9,8 @@ require 'boid'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 30
-   num_foodstuff = 10
+   num_boids = 50
+   num_foodstuff = 5
    boids = {}
    foodstuffs = {}
 

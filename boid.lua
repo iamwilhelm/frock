@@ -5,16 +5,16 @@ Boid = {
    radius = 20
 }
 
-Boid.MAX_SPEED = 15
+Boid.MAX_SPEED = 20
 Boid.AVOID_RADIUS = Boid.radius * 3
-Boid.AVOID_DAMPER = 50
+Boid.AVOID_DAMPER = 200
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
-Boid.ATTRACTION_DAMPER = 30
+Boid.ATTRACTION_DAMPER = 70
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
 Boid.ALIGNMENT_DAMPER = 50
-Boid.HUNTING_RADIUS = Boid.radius * 5
-Boid.HUNTING_DAMPER = 10
-Boid.STAY_VISIBLE_DAMPER = 3000
+Boid.HUNTING_RADIUS = Boid.radius * 10
+Boid.HUNTING_DAMPER = 100
+Boid.STAY_VISIBLE_DAMPER = 2000
 
 function Boid:new(x, y, vx, vy)
    local instance = {}
@@ -32,7 +32,7 @@ end
 function Boid:calculate_avoidance_delta(boids)
    for _, other in ipairs(boids) do
       if self.position:isNearby(Boid.AVOID_RADIUS, other.position) then
-         self.velocity_delta = self.velocity_delta + (self.position - other.position) / Boid.AVOID_DAMPER
+         self.velocity_delta = self.velocity_delta + ((self.position - other.position) / Boid.AVOID_DAMPER)
       end
    end
 end
@@ -47,7 +47,7 @@ function Boid:calculate_attraction_delta(boids)
       end
    end
    average_position = average_position / visible_boids
-   self.velocity_delta = self.velocity_delta + (average_position - self.position) / Boid.ATTRACTION_DAMPER
+   self.velocity_delta = self.velocity_delta + ((average_position - self.position) / Boid.ATTRACTION_DAMPER)
 end
 
 function Boid:calculate_alignment_delta(boids)
@@ -60,13 +60,13 @@ function Boid:calculate_alignment_delta(boids)
       end
    end
    alignment_delta = alignment_delta / visible_boids
-   self.velocity_delta = self.velocity_delta + (alignment_delta / Boid.ALIGNMENT_DAMPER)
+   self.velocity_delta = self.velocity_delta + ((alignment_delta / Boid.ALIGNMENT_DAMPER))
 end
 
 function Boid:calculate_hunting_delta(foodstuffs)
    for _, food in ipairs(foodstuffs) do
       if self.position:isNearby(Boid.HUNTING_RADIUS, food.position) then
-         self.velocity_delta = self.velocity_delta + (food.position - self.position) / Boid.HUNTING_DAMPER
+         self.velocity_delta = self.velocity_delta + ((food.position - self.position) / Boid.HUNTING_DAMPER)
       end
    end
 end
@@ -76,7 +76,7 @@ function Boid:calculate_stay_visible_delta(boids)
    local mid_y = love.graphics.getHeight() / 2
    local center_vector = Vector:new(mid_x, mid_y)
    
-   self.velocity_delta = self.velocity_delta - (self.position - center_vector) / Boid.STAY_VISIBLE_DAMPER
+   self.velocity_delta = self.velocity_delta - ((self.position - center_vector) / Boid.STAY_VISIBLE_DAMPER)
 end
 
 function Boid:apply_deltas()
