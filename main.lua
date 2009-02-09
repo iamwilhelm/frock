@@ -9,7 +9,7 @@ require 'boid'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 30
+   num_boids = 40
    num_foodstuff = 5
    boids = {}
    foodstuffs = {}
@@ -54,7 +54,10 @@ function draw()
       boid:draw()
    end
 
-   love.graphics.draw(table.getn(boids), 10, 20)
+   love.graphics.draw("Boids: "..table.getn(boids), 10, 20)
+   love.graphics.draw("Plants: "..table.getn(foodstuffs), 10, 35)
+   love.graphics.draw("FPS: "..love.timer.getFPS(), 10, 50)
+   love.graphics.draw("dt: "..love.timer.getDelta(), 10, 65)
 end
 
 function mousepressed(x, y, button)
