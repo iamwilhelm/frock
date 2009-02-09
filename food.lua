@@ -21,7 +21,7 @@ function Food:spawn(x, y)
    if y == nil then
       y = love.graphics.getHeight() * math.random()
    end
-   self.size = Food.radius
+   self.size = Food.radius * 2
    self.position = Vector:new(x, y)
    self.sprite = love.graphics.newImage("plant1.png")
 end

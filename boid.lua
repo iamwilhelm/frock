@@ -6,7 +6,7 @@ Boid = {
 }
 
 Boid.MAX_SPEED = 10
-Boid.MIN_SPEED = 1
+Boid.MIN_SPEED = 5
 Boid.AVOID_RADIUS = Boid.radius * 3
 Boid.AVOID_SPEED = 50
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
@@ -14,7 +14,7 @@ Boid.ATTRACTION_DAMPER = 50
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
 Boid.ALIGNMENT_DAMPER = 50
 Boid.HUNTING_RADIUS = Boid.radius * 10
-Boid.HUNTING_DAMPER = 100
+Boid.HUNTING_DAMPER = 75
 Boid.STAY_VISIBLE_DAMPER = 1000
 
 function Boid:new(x, y, vx, vy)
