@@ -1,7 +1,8 @@
 == What is Frock?
 
 Frock is a flock simulator.  Was first a port, then a simulation, maybe later 
-a game.  Who knows.
+a game.  But the immediate goals are for it to support a large number >100 of 
+flying boids
 
 == Installing
 
@@ -10,10 +11,23 @@ any dependencies that package needs.
 
 http://love2d.org/download
 
+== Running
+
+Clone the repo from the git repository.
+
+  git clone git://github.com/iamwilhelm/frock.git  
+
+Then inside of the frock root directory run:
+
+  love .
+
+Don't forget the period!
+
 == Author 
 
 Wilhelm Chung 
 blog: http://webjazz.blogspot.com
+github: http://github.com/iamwilhelm
 
 == Swarming Chickens (boids)
 
@@ -41,8 +55,9 @@ it, but you get this emergent property of flocking.
 
 I've always loved swarms and boids ever since I learned about them.  I've 
 made my own flocking boids in Netlogo, but they were never fast enough.  
-The demo for Lua's particle system impressed me, and Love seemed easy enough
-to get started with, so after hacking away at about 5 or 6 hours total, I 
+The demo for Lua's particle system impressed me, with its speed.  And Love 
+seemed easy enough to get started with.  I wanted to see if I can create a 
+simulation for boids.  So after hacking away at about 5 or 6 hours total, I 
 had the first version working.
 
 This was originally a port of the Hungry Boids app from 
