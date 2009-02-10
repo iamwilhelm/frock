@@ -1,5 +1,53 @@
-This is a flocking boid simulation.  
-by Wilhelm Chung  http://webjazz.blogspot.com
+== What is Frock?
+
+Frock is a flock simulator.  Was first a port, then a simulation, maybe later 
+a game.  Who knows.
+
+== Installing
+
+You need to install Lua5.1 and the Love 0.5.0 2D Game Framework, along with 
+any dependencies that package needs.
+
+http://love2d.org/download
+
+== Author 
+
+Wilhelm Chung 
+blog: http://webjazz.blogspot.com
+
+== Swarming Chickens (boids)
+
+You'll see chickens flocking around eating the shrubbery.  It demonstrates 
+the flocking algorithm, and that each chicken follows only three rules
+
+1. Out of your neighbors, head towards what you perceive to be the center 
+   of the flock
+2. Avoid colliding with your neighbors.  The closer you are, the more you'll 
+   want to move away
+3. Of all your neighbors, head in the same direction they're going.
+
+Add the three vector forces up for these three motivations, and you have 
+flocking behavior.  There are two additional forces in the simulation to make 
+it more interesting to watch.  
+
+1. Move towards the center of the screen
+2. Move towards plants that you perceive to be around you.
+
+Notice that the flocks split and regroup and weave around on the screen, 
+and there is no global coordination.  Each chicken can only see what's around 
+it, but you get this emergent property of flocking.
+
+== History and credits
+
+I've always loved swarms and boids ever since I learned about them.  I've 
+made my own flocking boids in Netlogo, but they were never fast enough.  
+The demo for Lua's particle system impressed me, and Love seemed easy enough
+to get started with, so after hacking away at about 5 or 6 hours total, I 
+had the first version working.
+
+This was originally a port of the Hungry Boids app from 
+Ruby Shoes into Lua Love
+http://the-shoebox.org/apps/45
 
 Farm animals were ripped off of Harvest Moon by N-finity
 http://tsgk.captainn.net/index.php?p=userinfo&t=1
