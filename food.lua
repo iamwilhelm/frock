@@ -23,7 +23,7 @@ function Food:spawn(x, y)
    end
    self.size = Food.radius * 2
    self.position = Vector:new(x, y)
-   self.sprite = love.graphics.newImage("plant1.png")
+   self.sprite = love.graphics.newImage("images/plant1.png")
 end
 
 function Food:isEaten(boid)

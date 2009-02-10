@@ -9,7 +9,7 @@ require 'boid'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 40
+   num_boids = 50
    num_foodstuff = 5
    boids = {}
    foodstuffs = {}
@@ -34,7 +34,8 @@ function update(dt)
    for _, boid in ipairs(boids) do
       boid:navigate(boids, foodstuffs)
       boid:move()
-
+      boid:update(dt)
+      
       -- see if each food is isEaten
       for _, food in ipairs(foodstuffs) do
          food:isEaten(boid)
