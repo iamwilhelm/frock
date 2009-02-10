@@ -65,8 +65,13 @@ function Vector:norm()
    return Vector:new(self.x, self.y) / self:r()
 end
 
+function Vector:ang()
+   return math.atan(self.y / self.x)
+end
 
 -- a = Vector:new(2,2)
+-- print(a:toString())
+-- print(math.deg(a:ang()))
 -- b = Vector:new(5,6)
 -- print(a:to_s())
 -- print(b:to_s())

@@ -25,7 +25,12 @@ function Boid:new(x, y, vx, vy)
    instance.velocity = Vector:new(vx, vy)
    instance.position = Vector:new(x, y)
    instance.velocity_delta = Vector:new(0, 0)
-   instance.sprite = love.graphics.newImage("images/cow.png")
+
+   instance.left_sprite = love.graphics.newImage("images/left_chicken.png")
+   instance.left_anim = love.graphics.newAnimation(instance.left_sprite, 18, 18, 0.1)
+   instance.right_sprite = love.graphics.newImage("images/right_chicken.png")
+   instance.right_anim = love.graphics.newAnimation(instance.right_sprite, 18, 18, 0.1)
+   instance.anim = left_anim
 
    return instance
 end
@@ -112,6 +117,17 @@ function Boid:move()
    self.position = self.position + self.velocity
 end
 
+function Boid:update(dt)
+   if self.velocity.x <= 0 then
+      self.anim = self.left_anim
+   else
+      self.anim = self.right_anim
+   end
+
+   self.anim:update(dt)
+end
+
 function Boid:draw()
-   love.graphics.draw(self.sprite, self.position.x, self.position.y)
+   love.graphics.draw(self.anim, self.position.x, self.position.y, 
+                      math.deg(self.velocity:ang()), 1)
 end
