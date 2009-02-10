@@ -25,7 +25,7 @@ function Boid:new(x, y, vx, vy)
    instance.velocity = Vector:new(vx, vy)
    instance.position = Vector:new(x, y)
    instance.velocity_delta = Vector:new(0, 0)
-   instance.sprite = love.graphics.newImage("cow.png")
+   instance.sprite = love.graphics.newImage("images/cow.png")
 
    return instance
 end
