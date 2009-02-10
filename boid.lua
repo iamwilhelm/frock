@@ -129,5 +129,5 @@ end
 
 function Boid:draw()
    love.graphics.draw(self.anim, self.position.x, self.position.y, 
-                      math.deg(self.velocity:ang()), 1)
+                      math.deg(self.velocity:ang()), 1.5)
 end
