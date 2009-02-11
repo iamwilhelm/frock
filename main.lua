@@ -1,11 +1,7 @@
 -- Author       : Wilhelm Chung - http://webjazz.blogspot.com
--- Summary      : A port of Wally Glutton (http://stungeye.com)'s hungry boids
---                to Lua's Love
---
--- Boid Algo    : http://www.vergenet.net/~conrad/boids/pseudocode.html 
 
-require 'food'
-require 'boid'
+love.filesystem.require 'food.lua'
+love.filesystem.require 'boid.lua'
 
 function load()
    math.randomseed(os.time())

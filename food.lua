@@ -1,4 +1,4 @@
-require 'vector'
+require 'vector.lua'
 
 Food = {
    identity = "Food class",

@@ -1,4 +1,4 @@
-require 'vector'
+require 'vector.lua'
 
 Boid = {
    identity = "Boid class",
