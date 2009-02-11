@@ -60,9 +60,15 @@ seemed easy enough to get started with.  I wanted to see if I can create a
 simulation for boids.  So after hacking away at about 5 or 6 hours total, I 
 had the first version working.
 
-This was originally a port of the Hungry Boids app from 
-Ruby Shoes into Lua Love
+This was originally a port of Wally Glutton's (http://stungeye.com) Hungry 
+Boids app from Ruby Shoes into Lua Love
 http://the-shoebox.org/apps/45
+
+Boids were first introduced by Craig Reynolds:
+http://www.red3d.com/cwr/boids/
+
+Boid Algorithm Tutorial: 
+http://www.vergenet.net/~conrad/boids/pseudocode.html 
 
 Farm animals were ripped off of Harvest Moon by N-finity
 http://tsgk.captainn.net/index.php?p=userinfo&t=1
