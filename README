@@ -31,6 +31,9 @@ github: http://github.com/iamwilhelm
 
 == Swarming Chickens (boids)
 
+Introduction Blog post:
+http://webjazz.blogspot.com/2009/02/introducing-frock-flocking-chicken.html
+
 You'll see chickens flocking around eating the shrubbery.  It demonstrates 
 the flocking algorithm, and that each chicken follows only three rules
 
