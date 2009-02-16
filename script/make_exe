@@ -1,0 +1,6 @@
+#!/bin/sh
+
+find . -name "*.[l|p][u|n][a|g]" -print | zip frock.love -@
+cat /usr/bin/love frock.love > frock_0.0.1
+chmod u+x frock_0.0.1
+rm frock.love
