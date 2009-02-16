@@ -5,17 +5,17 @@ Boid = {
    radius = 20
 }
 
-Boid.MAX_SPEED = 200
+Boid.MAX_SPEED = 175
 Boid.MIN_SPEED = 100
 Boid.AVOID_RADIUS = Boid.radius * 3
 Boid.AVOID_AMPLIFIER = 6
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
 Boid.ATTRACTION_DAMPER = 10
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
-Boid.ALIGNMENT_DAMPER = 15
+Boid.ALIGNMENT_DAMPER = 8
 Boid.HUNTING_RADIUS = Boid.radius * 10
 Boid.HUNTING_DAMPER = 5
-Boid.STAY_VISIBLE_DAMPER = 100
+Boid.STAY_VISIBLE_DAMPER = 40
 
 function Boid:new(x, y, vx, vy)
    local instance = {}
