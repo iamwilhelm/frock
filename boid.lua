@@ -5,17 +5,17 @@ Boid = {
    radius = 20
 }
 
-Boid.MAX_SPEED = 10
-Boid.MIN_SPEED = 5
+Boid.MAX_SPEED = 200
+Boid.MIN_SPEED = 100
 Boid.AVOID_RADIUS = Boid.radius * 3
-Boid.AVOID_SPEED = 50
+Boid.AVOID_AMPLIFIER = 6
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
-Boid.ATTRACTION_DAMPER = 50
+Boid.ATTRACTION_DAMPER = 10
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
-Boid.ALIGNMENT_DAMPER = 50
+Boid.ALIGNMENT_DAMPER = 15
 Boid.HUNTING_RADIUS = Boid.radius * 10
-Boid.HUNTING_DAMPER = 75
-Boid.STAY_VISIBLE_DAMPER = 1000
+Boid.HUNTING_DAMPER = 5
+Boid.STAY_VISIBLE_DAMPER = 100
 
 function Boid:new(x, y, vx, vy)
    local instance = {}
@@ -40,7 +40,7 @@ function Boid:calculate_avoidance_delta(boids)
       if self.position:isNearby(Boid.AVOID_RADIUS, other.position) then
          local avoid_vector = (self.position - other.position)
          local unit_avoid_accel = avoid_vector:norm()
-         local avoid_multiplier = Boid.AVOID_RADIUS / avoid_vector:r()
+         local avoid_multiplier = Boid.AVOID_RADIUS * Boid.AVOID_AMPLIFIER / avoid_vector:r()
          local avoid_accel = unit_avoid_accel * avoid_multiplier
          self.velocity_delta = self.velocity_delta + avoid_accel
       end
@@ -57,7 +57,8 @@ function Boid:calculate_attraction_delta(boids)
       end
    end
    average_position = average_position / visible_boids
-   self.velocity_delta = self.velocity_delta + ((average_position - self.position) / Boid.ATTRACTION_DAMPER)
+   self.velocity_delta = self.velocity_delta + 
+      ((average_position - self.position) / Boid.ATTRACTION_DAMPER)
 end
 
 function Boid:calculate_alignment_delta(boids)
@@ -70,13 +71,15 @@ function Boid:calculate_alignment_delta(boids)
       end
    end
    alignment_delta = alignment_delta / visible_boids
-   self.velocity_delta = self.velocity_delta + ((alignment_delta / Boid.ALIGNMENT_DAMPER))
+   self.velocity_delta = self.velocity_delta + 
+      ((alignment_delta / Boid.ALIGNMENT_DAMPER))
 end
 
 function Boid:calculate_hunting_delta(foodstuffs)
    for _, food in ipairs(foodstuffs) do
       if self.position:isNearby(Boid.HUNTING_RADIUS, food.position) then
-         self.velocity_delta = self.velocity_delta + ((food.position - self.position) / Boid.HUNTING_DAMPER)
+         self.velocity_delta = self.velocity_delta + 
+            ((food.position - self.position) / Boid.HUNTING_DAMPER)
       end
    end
 end
@@ -86,7 +89,8 @@ function Boid:calculate_stay_visible_delta(boids)
    local mid_y = love.graphics.getHeight() / 2
    local center_vector = Vector:new(mid_x, mid_y)
    
-   self.velocity_delta = self.velocity_delta - ((self.position - center_vector) / Boid.STAY_VISIBLE_DAMPER)
+   self.velocity_delta = self.velocity_delta - 
+      ((self.position - center_vector) / Boid.STAY_VISIBLE_DAMPER)
 end
 
 function Boid:apply_deltas()
@@ -111,10 +115,10 @@ function Boid:navigate(boids, foodstuffs)
    self:calculate_stay_visible_delta(boids)
 end
 
-function Boid:move()
+function Boid:move(dt)
    self:apply_deltas()
    self:limit_speed()
-   self.position = self.position + self.velocity
+   self.position = self.position + self.velocity * dt
 end
 
 function Boid:update(dt)

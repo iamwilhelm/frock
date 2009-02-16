@@ -5,8 +5,8 @@ love.filesystem.require 'boid.lua'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 30
-   num_foodstuff = 5
+   num_boids = 45
+   num_foodstuff = 1
    boids = {}
    foodstuffs = {}
 
@@ -29,7 +29,7 @@ function update(dt)
    -- updates vectors for each boid
    for _, boid in ipairs(boids) do
       boid:navigate(boids, foodstuffs)
-      boid:move()
+      boid:move(dt)
       boid:update(dt)
       
       -- see if each food is isEaten
