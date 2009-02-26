@@ -27,12 +27,18 @@ function Boid:new(x, y, vx, vy)
    instance.velocity_delta = Vector:new(0, 0)
 
    instance.left_sprite = love.graphics.newImage("images/left_chicken.png")
-   instance.left_anim = love.graphics.newAnimation(instance.left_sprite, 18, 18, 0.1)
    instance.right_sprite = love.graphics.newImage("images/right_chicken.png")
-   instance.right_anim = love.graphics.newAnimation(instance.right_sprite, 18, 18, 0.1)
+   instance.left_anim = love.graphics.newAnimation(instance.left_sprite, 18, 18, 
+                                                   instance:flap_rate())
+   instance.right_anim = love.graphics.newAnimation(instance.right_sprite, 18, 18, 
+                                                    instance:flap_rate())
    instance.anim = left_anim
 
    return instance
+end
+
+function Boid:flap_rate()
+   return 0.1--self.velocity:r() / Boid.MAX_SPEED / 4
 end
 
 function Boid:calculate_avoidance_delta(boids)

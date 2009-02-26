@@ -5,7 +5,7 @@ love.filesystem.require 'boid.lua'
 
 function load()
    math.randomseed(os.time())
-   num_boids = 45
+   num_boids = 25
    num_foodstuff = 1
    boids = {}
    foodstuffs = {}
@@ -55,6 +55,7 @@ function draw()
    love.graphics.draw("Plants: "..table.getn(foodstuffs), 10, 35)
    love.graphics.draw("FPS: "..love.timer.getFPS(), 10, 50)
    love.graphics.draw("dt: "..love.timer.getDelta(), 10, 65)
+   love.graphics.draw("flap rate:"..boids[1]:flap_rate(), 10, 80)
 end
 
 function mousepressed(x, y, button)
