@@ -30,7 +30,7 @@ function update(dt)
    for _, boid in ipairs(boids) do
       boid:navigate(boids, foodstuffs)
       boid:move(dt)
-      boid:update(dt)
+      boid:animate(dt)
       
       -- see if each food is isEaten
       for _, food in ipairs(foodstuffs) do

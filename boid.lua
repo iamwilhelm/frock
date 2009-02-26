@@ -127,7 +127,7 @@ function Boid:move(dt)
    self.position = self.position + self.velocity * dt
 end
 
-function Boid:update(dt)
+function Boid:animate(dt)
    if self.velocity.x <= 0 then
       self.anim = self.left_anim
    else
