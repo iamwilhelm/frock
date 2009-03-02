@@ -36,5 +36,7 @@ function Bucket:isInside(x, y)
 end
 
 function Bucket:draw()
-   love.graphics.rectangle("outline", self.x, self.y, self.xsize, self.ysize)
+   love.graphics.setColor(178, 226, 246, 128)
+   love.graphics.rectangle(love.draw_line, self.x, self.y, self.xsize, self.ysize)
+   love.graphics.setColor(255, 255, 255, 255)
 end

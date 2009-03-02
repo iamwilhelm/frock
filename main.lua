@@ -2,6 +2,7 @@
 
 love.filesystem.require 'food.lua'
 love.filesystem.require 'boid.lua'
+love.filesystem.require 'roommates.lua'
 love.filesystem.require 'status.lua'
 
 -- variables to show various awareness radii
@@ -32,6 +33,8 @@ function load()
    for i = 1, num_foodstuff do
       foodstuffs[i] = Food:new()
    end
+
+   spatial_db = Roommates:new(love.graphics.getWidth(), love.graphics.getHeight(), 10, 10)
 end
 
 function update(dt)
