@@ -5,7 +5,6 @@ love.filesystem.require 'boid.lua'
 love.filesystem.require 'roommates.lua'
 love.filesystem.require 'status.lua'
 
-
 function load()
    math.randomseed(os.time())
    num_boids = 25

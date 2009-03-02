@@ -54,8 +54,6 @@ function draw_boid_status(x, y)
    y = y + 15
    love.graphics.draw("FPS: "..love.timer.getFPS(), x, y)
    y = y + 15
-   love.graphics.draw("dt: "..love.timer.getDelta(), x, y)
-   y = y + 15
    love.graphics.draw("flap rate:"..boids[1]:flap_rate(), x, y)
    y = y + 15
 end
