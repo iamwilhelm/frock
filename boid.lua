@@ -144,35 +144,35 @@ end
 
 -- draw the physical radius
 function Boid:draw_physical()
-   love.graphics.setColor(255, 255, 255, 200)
+   love.graphics.setColor(255, 255, 255, 128)
    love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.radius, 10)
    love.graphics.setColor(255, 255, 255, 255)
 end
 
 -- draw the attraction radius
 function Boid:draw_attraction()
-   love.graphics.setColor(255, 0, 0, 200)
+   love.graphics.setColor(255, 0, 0, 128)
    love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.ATTRACTION_RADIUS, 10)
    love.graphics.setColor(255, 255, 255, 255)
 end
 
 -- draw the avoidance radius
 function Boid:draw_avoidance()
-   love.graphics.setColor(0, 255, 0, 200)
+   love.graphics.setColor(0, 255, 0, 128)
    love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.AVOID_RADIUS, 10)
    love.graphics.setColor(255, 255, 255, 255)
 end
 
 -- draw the alignment radius
 function Boid:draw_alignment()
-   love.graphics.setColor(0, 0, 255, 200)
+   love.graphics.setColor(0, 0, 255, 128)
    love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.ALIGNMENT_RADIUS, 10)
    love.graphics.setColor(255, 255, 255, 255)
 end
 
 -- draw the hunting radius
 function Boid:draw_hunting()
-   love.graphics.setColor(255, 128, 128, 200)
+   love.graphics.setColor(255, 225, 132, 128)
    love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.HUNTING_RADIUS, 10)
    love.graphics.setColor(255, 255, 255, 255)
 end
