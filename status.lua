@@ -16,6 +16,19 @@ function draw_debug(boid)
    end   
 end
 
+function draw_boid_status(x, y)
+   love.graphics.draw("Boids: "..table.getn(boids), x, y)
+   y = y + 15
+   love.graphics.draw("Plants: "..table.getn(foodstuffs), x, y)
+   y = y + 15
+   love.graphics.draw("FPS: "..love.timer.getFPS(), x, y)
+   y = y + 15
+   love.graphics.draw("dt: "..love.timer.getDelta(), x, y)
+   y = y + 15
+   love.graphics.draw("flap rate:"..boids[1]:flap_rate(), x, y)
+   y = y + 15
+end
+
 function draw_radius_status(x, y)
    love.graphics.draw("1) physical radius: "..tostring(show_physical_radius), x, y)
    y = y + 15

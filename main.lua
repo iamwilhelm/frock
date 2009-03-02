@@ -60,13 +60,11 @@ function draw()
       boid:draw()
       draw_debug(boid)
    end
-
-   love.graphics.draw("Boids: "..table.getn(boids), 10, 20)
-   love.graphics.draw("Plants: "..table.getn(foodstuffs), 10, 35)
-   love.graphics.draw("FPS: "..love.timer.getFPS(), 10, 50)
-   love.graphics.draw("dt: "..love.timer.getDelta(), 10, 65)
-   love.graphics.draw("flap rate:"..boids[1]:flap_rate(), 10, 80)
-
+   
+   -- draw the buckets
+   -- spatial_db:draw()
+   
+   draw_boid_status(10, 20)
    draw_radius_status(10, 600)
 end
 
