@@ -5,12 +5,6 @@ love.filesystem.require 'boid.lua'
 love.filesystem.require 'roommates.lua'
 love.filesystem.require 'status.lua'
 
--- variables to show various awareness radii
-show_physical_radius = false
-show_attraction_radius = false
-show_avoidance_radius = false
-show_alignment_radius = false
-show_hunting_radius = false
 
 function load()
    math.randomseed(os.time())
@@ -53,6 +47,8 @@ function update(dt)
 end
 
 function draw()
+   draw_world_debug(boid)
+
    -- draw each food
    for _, food in ipairs(foodstuffs) do
       food:draw()
@@ -60,13 +56,10 @@ function draw()
    
    -- draw each boid
    for _, boid in ipairs(boids) do
+      draw_boids_debug(boid)
       boid:draw()
-      draw_debug(boid)
    end
-   
-   -- draw the buckets
-   -- spatial_db:draw()
-   
+
    draw_boid_status(10, 20)
    draw_radius_status(10, 600)
 end
@@ -78,17 +71,7 @@ function mousepressed(x, y, button)
 end
 
 function keyreleased(key)
-   if key == love.key_1 then
-      show_physical_radius = toggle(show_physical_radius)
-   elseif key == love.key_2 then
-      show_attraction_radius = toggle(show_attraction_radius)
-   elseif key == love.key_3 then
-      show_avoidance_radius = toggle(show_avoidance_radius)
-   elseif key == love.key_4 then
-      show_alignment_radius = toggle(show_alignment_radius)
-   elseif key == love.key_5 then
-      show_hunting_radius = toggle(show_hunting_radius)
-   end
+   toggle_status_keys(key)   
 end
 
 function toggle(variable)
