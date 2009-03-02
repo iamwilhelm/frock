@@ -2,6 +2,7 @@
 
 love.filesystem.require 'food.lua'
 love.filesystem.require 'boid.lua'
+love.filesystem.require 'status.lua'
 
 -- variables to show various awareness radii
 show_physical_radius = false
@@ -66,11 +67,7 @@ function draw()
    love.graphics.draw("dt: "..love.timer.getDelta(), 10, 65)
    love.graphics.draw("flap rate:"..boids[1]:flap_rate(), 10, 80)
 
-   love.graphics.draw("physical radius: "..tostring(show_physical_radius), 10, 95)
-   love.graphics.draw("attraction radius: "..tostring(show_attraction_radius), 10, 110)
-   love.graphics.draw("avoidance radius: "..tostring(show_avoidance_radius), 10, 125)
-   love.graphics.draw("alignment radius: "..tostring(show_alignment_radius), 10, 140)
-   love.graphics.draw("hunting radius: "..tostring(show_hunting_radius), 10, 155)
+   draw_radius_status(10, 600)
 end
 
 function mousepressed(x, y, button)
@@ -91,24 +88,6 @@ function keyreleased(key)
    elseif key == love.key_5 then
       show_hunting_radius = toggle(show_hunting_radius)
    end
-end
-
-function draw_debug(boid)
-   if show_physical_radius then
-      boid:draw_physical()
-   end
-   if show_attraction_radius then
-      boid:draw_attraction()
-   end
-   if show_avoidance_radius then
-      boid:draw_avoidance()
-   end
-   if show_alignment_radius then
-      boid:draw_alignment()
-   end
-   if show_hunting_radius then
-      boid:draw_hunting()
-   end   
 end
 
 function toggle(variable)
