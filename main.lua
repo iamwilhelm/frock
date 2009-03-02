@@ -17,6 +17,7 @@ function load()
    boids = {}
    foodstuffs = {}
 
+   love.graphics.setLineWidth(2)
    font = love.graphics.newFont(love.default_font, 14)
    love.graphics.setFont(font)
 
