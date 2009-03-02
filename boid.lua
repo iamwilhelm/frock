@@ -2,15 +2,15 @@ require 'vector.lua'
 
 Boid = {
    identity = "Boid class",
-   radius = 20
+   radius = 15
 }
 
 Boid.MAX_SPEED = 175
 Boid.MIN_SPEED = 100
-Boid.AVOID_RADIUS = Boid.radius * 3
-Boid.AVOID_AMPLIFIER = 6
 Boid.ATTRACTION_RADIUS = Boid.radius * 8
 Boid.ATTRACTION_DAMPER = 10
+Boid.AVOID_RADIUS = Boid.radius * 3
+Boid.AVOID_AMPLIFIER = 6
 Boid.ALIGNMENT_RADIUS = Boid.radius * 3
 Boid.ALIGNMENT_DAMPER = 8
 Boid.HUNTING_RADIUS = Boid.radius * 10
@@ -141,3 +141,40 @@ function Boid:draw()
    love.graphics.draw(self.anim, self.position.x, self.position.y, 
                       math.deg(self.velocity:ang()), 1.5)
 end
+
+-- draw the physical radius
+function Boid:draw_physical()
+   love.graphics.setColor(255, 255, 255, 200)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.radius, 10)
+   love.graphics.setColor(255, 255, 255, 255)
+end
+
+-- draw the attraction radius
+function Boid:draw_attraction()
+   love.graphics.setColor(255, 0, 0, 200)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.ATTRACTION_RADIUS, 10)
+   love.graphics.setColor(255, 255, 255, 255)
+end
+
+-- draw the avoidance radius
+function Boid:draw_avoidance()
+   love.graphics.setColor(0, 255, 0, 200)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.AVOID_RADIUS, 10)
+   love.graphics.setColor(255, 255, 255, 255)
+end
+
+-- draw the alignment radius
+function Boid:draw_alignment()
+   love.graphics.setColor(0, 0, 255, 200)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.ALIGNMENT_RADIUS, 10)
+   love.graphics.setColor(255, 255, 255, 255)
+end
+
+-- draw the hunting radius
+function Boid:draw_hunting()
+   love.graphics.setColor(255, 128, 128, 200)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, Boid.HUNTING_RADIUS, 10)
+   love.graphics.setColor(255, 255, 255, 255)
+end
+
+
