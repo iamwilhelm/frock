@@ -26,14 +26,20 @@ function load()
    for i = 1, num_foodstuff do
       foodstuffs[i] = Food:new()
    end
-
+   
    spatial_db = Roommates:new(love.graphics.getWidth(), love.graphics.getHeight(), 10, 10)
 end
 
 function update(dt)
+   -- updates the spatial data structure
+   for _, boid in ipairs(boids) do
+      -- spatial_db:update(boid, boid.position.x, boid.position.y)
+   end
+
    -- updates vectors for each boid
    for _, boid in ipairs(boids) do
-      boid:navigate(boids, foodstuffs)
+      neighbors = boids -- spatial_db:neighbors(boid.position.x, boid.position.y, Boid.ATTRACTION_RADIUS)
+      boid:navigate(neighbors, foodstuffs)
       boid:move(dt)
       boid:animate(dt)
       
@@ -42,7 +48,6 @@ function update(dt)
          food:isEaten(boid)
       end
    end
-
 end
 
 function draw()

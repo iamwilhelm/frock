@@ -15,24 +15,41 @@ function Bucket:new(x, y, xsize, ysize)
    instance.y = y
    instance.xsize = xsize
    instance.ysize = ysize
+   instance.items = {}
 
    return instance
 end
 
+function Bucket:center()
+   return self.x + self.xsize / 2, self.y + self.ysize / 2
+end
+
 function Bucket:xlimits()
-   left = self.x
-   right = self.x + self.xsize
-   return left, right
+   return self.x, self.x + self.xsize
 end
 
 function Bucket:ylimits()
-   top = self.y
-   bottom = self.y + self.ysize
-   return top, bottom
+   return self.y, self.y + self.ysize
 end
 
-function Bucket:isInside(x, y)
+function Bucket:contains(x, y)
    return isBetween(x, self:xlimits()) and isBetween(y, self:ylimits())
+end
+
+function Bucket:toArray()
+   local items = {}
+   for item, _ in ipairs(self.items) do
+      table.insert(items, item)
+   end
+   return items
+end
+
+function Bucket:add(item)
+   self.items[item] = true
+end
+
+function Bucket:remove(item)
+   self.items[item] = nil
 end
 
 function Bucket:draw()
