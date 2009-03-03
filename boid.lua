@@ -68,8 +68,8 @@ function Boid:calculate_attraction_delta(boids)
 end
 
 function Boid:calculate_alignment_delta(boids)
-   alignment_delta = Vector:new(0, 0)
-   visible_boids = 0
+   local alignment_delta = Vector:new(0, 0)
+   local visible_boids = 0
    for _, other in ipairs(boids) do
       if self.position:isNearby(Boid.ALIGNMENT_RADIUS, other.position) then
          alignment_delta = alignment_delta + other.velocity
