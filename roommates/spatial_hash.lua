@@ -23,5 +23,5 @@ function SpatialHash:hash_y(y)
 end
 
 function SpatialHash:hash(x, y)
-   return self:hash_x(x) + self:hash_y(y) * self.xres
+   return self:hash_x(x) + 1 + self:hash_y(y) * self.xres
 end
