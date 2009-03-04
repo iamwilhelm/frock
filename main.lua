@@ -33,7 +33,7 @@ end
 function update(dt)
    -- updates the spatial data structure
    for _, boid in ipairs(boids) do
-      -- spatial_db:update(boid, boid.position.x, boid.position.y)
+      --spatial_db:update(boid, boid.position.x, boid.position.y)
    end
 
    -- updates vectors for each boid
@@ -42,6 +42,9 @@ function update(dt)
       boid:navigate(neighbors, foodstuffs)
       boid:move(dt)
       boid:animate(dt)
+
+      -- wrap boids in torus
+      torus(boid)
       
       -- see if each food is isEaten
       for _, food in ipairs(foodstuffs) do
@@ -83,5 +86,18 @@ function toggle(variable)
       return false
    else
       return true
+   end
+end
+
+-- breaks encapsulation
+function torus(boid)
+   if boid.position.x >= love.graphics.getWidth() then
+      boid.position = Vector:new(boid.position.x - love.graphics.getWidth(), boid.position.y)
+   elseif boid.position.x <= 0 then
+      boid.position = Vector:new(love.graphics.getWidth() + boid.position.x, boid.position.y)
+   elseif boid.position.y >= love.graphics.getHeight() then
+      boid.position = Vector:new(boid.position.x, boid.position.y - love.graphics.getHeight())
+   elseif boid.position.y <= 0 then
+      boid.position = Vector:new(boid.position.x, love.graphics.getHeight() + boid.position.y)
    end
 end
