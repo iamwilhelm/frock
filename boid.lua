@@ -118,7 +118,7 @@ function Boid:navigate(boids, foodstuffs)
    self:calculate_attraction_delta(boids)
    self:calculate_alignment_delta(boids)
    self:calculate_hunting_delta(foodstuffs)
-   self:calculate_stay_visible_delta(boids)
+--   self:calculate_stay_visible_delta(boids)
 end
 
 function Boid:move(dt)
@@ -140,6 +140,13 @@ end
 function Boid:draw()
    love.graphics.draw(self.anim, self.position.x, self.position.y, 
                       math.deg(self.velocity:ang()), 1.5)
+end
+
+function Boid:draw_debug()
+   love.graphics.setColor(255, 165, 0)
+   love.graphics.circle(love.draw_line, self.position.x, self.position.y, 10)
+   love.graphics.draw("("..math.floor(self.position.x)..", "..math.floor(self.position.y)..")", self.position.x + 5, self.position.y)
+   love.graphics.setColor(255, 255, 255)
 end
 
 -- draw the physical radius

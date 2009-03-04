@@ -22,7 +22,14 @@ function toggle_status_keys(key)
    end
 end
 
-function draw_boids_debug(boid)
+function draw_world_debug()
+   if show_buckets then
+      -- draw the buckets
+      spatial_db:draw()
+   end
+end
+
+function draw_boids_radius(boid)
    if show_physical_radius then
       boid:draw_physical()
    end
@@ -40,14 +47,7 @@ function draw_boids_debug(boid)
    end
 end
 
-function draw_world_debug()
-   if show_buckets then
-      -- draw the buckets
-      spatial_db:draw()
-   end
-end
-
-function draw_boid_status(x, y)
+function draw_boids_status(x, y)
    love.graphics.draw("Boids: "..table.getn(boids), x, y)
    y = y + 15
    love.graphics.draw("Plants: "..table.getn(foodstuffs), x, y)
@@ -55,7 +55,7 @@ function draw_boid_status(x, y)
    love.graphics.draw("FPS: "..love.timer.getFPS(), x, y)
    y = y + 15
    love.graphics.draw("flap rate:"..boids[1]:flap_rate(), x, y)
-   y = y + 15
+   y = y + 30
 end
 
 function draw_radius_status(x, y)

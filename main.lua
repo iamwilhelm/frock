@@ -54,7 +54,7 @@ function update(dt)
 end
 
 function draw()
-   draw_world_debug(boid)
+   draw_world_debug()
 
    -- draw each food
    for _, food in ipairs(foodstuffs) do
@@ -62,12 +62,15 @@ function draw()
    end
    
    -- draw each boid
-   for _, boid in ipairs(boids) do
-      draw_boids_debug(boid)
+   for i, boid in ipairs(boids) do
+      draw_boids_radius(boid)
       boid:draw()
+      if i == 1 then 
+         boid:draw_debug()
+      end
    end
 
-   draw_boid_status(10, 20)
+   draw_boids_status(10, 20)
    draw_radius_status(10, 600)
 end
 
